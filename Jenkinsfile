@@ -6,12 +6,14 @@ pipeline {
     }
         stages {
             stage ("init"){
+                steps{
                 script{
                 gv = load "scripts.groovy"
                 }
+                }
             }
         stage("build") {
-            step{
+            steps {
             script{
                 gv.buildApp()
             }
@@ -24,13 +26,13 @@ pipeline {
                         params.executeTests 
                     }
                 }
-             step{
+             steps {
             script{
                 gv.testApp()
             }
             }        }
         stage('deploy') {
-           step{
+           steps {
             script{
                 gv.deployApp()
             }
